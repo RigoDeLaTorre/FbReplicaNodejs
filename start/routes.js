@@ -16,8 +16,7 @@
 const Route = use('Route')
 
 // Route.on('/').render('pages/home')
-Route.get('/', 'PageController.welcome')
-Route.get('/home', 'PageController.home').middleware(['auth'])
+Route.get('/', 'PageController.home')
 
 //Authentication
 Route.get('/register', 'AuthController.register')
@@ -26,3 +25,8 @@ Route.get('/login', 'AuthController.login')
 Route.post('/login', 'AuthController.loginUser')
 Route.get('/forgot-password', 'AuthController.forgotPassword')
 Route.get('/logout', 'AuthController.logout')
+
+
+//api
+
+Route.get('/api/initialApp', 'ApiController.initialApp')
