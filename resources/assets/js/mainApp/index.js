@@ -1,6 +1,13 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+import{
+  BrowserRouter as Router,
+  Route,
+  NavLink
+} from 'react-router-dom'
+import Home from './components/Home'
+import Profile from './components/Profile'
 import LeftMenu from './components/leftMenu'
 import Messenger from './components/Messenger'
 import SearchHeader from './components/SearchHeader'
@@ -44,18 +51,27 @@ getInitialData()
   }
   render() {
     return (
+      <Router>
       <div className="app-container home-page">
         <LoadingComp initialData={(this.state.initialData == undefined) ? 'loading' : this.state.initialData} />
         <LeftMenu initialData={(this.state.initialData == undefined) ? 'loading' : this.state.initialData} />
         <section id="content-container">
             <SearchHeader/>
+            <Route exact path = "/" component={(props) => <Home routeProps={props}
+            initialData={(this.state.initialData ==undefined) ? 'loading' : this.state.initialData } />}/>
+
+            <Route exact path = "/profile/:id" component={(props) => <Profile routeProps={props}
+            initialData={(this.state.initialData ==undefined) ? 'loading' : this.state.initialData } />}/>
+
             <div className="content-area">
-                <ComposeSection />
-                <Posts />
+                <ComposeSection initialData={(this.state.initialData == undefined) ? 'loading' : this.state.initialData} />
+                <Posts initialData={(this.state.initialData == undefined) ? 'loading' : this.state.initialData}/>
             </div>
         </section>
         <Messenger/>
-    </div>)
+    </div>
+    </Router>
+  )
   }
 }
 
