@@ -13,6 +13,7 @@
     "watch-server": "adonis serve --dev",
     "sass": "gulp styles",
     "js": "gulp webpack"
+
   },
   "keywords": [
     "adonisjs",
